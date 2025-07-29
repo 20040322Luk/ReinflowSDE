@@ -30,6 +30,7 @@
 </p>
 
 ## :loudspeaker: News
+* [2025/07/28] 
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
 
 ## :rocket:  Installation
