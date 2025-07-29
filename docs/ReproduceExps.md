@@ -206,7 +206,7 @@ Fine-tuning tweaks pre-trained policies with online RL. Check out these examples
 
 ### 3.3 Evaluating
 
-Evaluate pre-trained policies across denoising steps with this command:
+To evaluate pre-trained policies across various denoising steps, run this command in your terminal: 
 ```bash
 python script/run.py --config-dir=cfg/robomimic/eval/transport --config-name=eval_reflow_mlp_img base_policy_path=PATH_TO_THE_POLICY_TO_EVALUATE denoising_step_list=[1,2,4,5,8,16,32,64,128] load_ema=False
 ```
@@ -216,9 +216,9 @@ python script/run.py --config-dir=cfg/robomimic/eval/transport --config-name=eva
   - Can’t set `denoising_step_list`? Add it to your config file.
   - Clear other processes on your machine for accurate timing.
 - **Output:** Saves a `.png` plot and data files for later use. Example: <img src="../sample_figs/denoise_step.png" alt="Evaluation Output" width="60%">
+- **What to record videos?** For Gym, Robomimic, and Franka Kitchen environments, you can change the `self.record_video=True` in the corresponding evaluation script and set `self.record_env_index` to the environment id that you wish to record. Then after running the evaluation logic, you will see a .mp4 file under your output directory along with your plot!
 
-
-**Warning** If you trained a flow matching policy with ReinFlow, typically we will clip the denoised actions during fine-tuning. Therefore, we recommend you turn on `self.clip_intermediate_actions=True` in your evaluation script. Otherwise the reward may drop. 
+- **Warning** If you trained a flow matching policy with ReinFlow, typically we will clip the denoised actions during fine-tuning. Therefore, we recommend you turn on `self.clip_intermediate_actions=True` in your evaluation script. Otherwise the reward may drop. 
 
 
 ### 3.4 Sensitivity Analysis
@@ -263,9 +263,7 @@ We provide the Google Drive link to the 1-ReFlow checkpoints trained in Square w
   - Set `sim_device=<gpu_id>` for fast rendering.
   - No EGL? Use `sim_device=null` for slower osmesa rendering.
 
-### Seeing Results
-
+### Visualizing Results for Other benchmarks in DPPO:
 - **Furniture-Bench:** Set `env.specific.headless=False` and `env.n_envs=1`.
 - **D3IL:** Use `+env.render=True`, `env.n_envs=1`, `train.render.num=1`, and `script/test_d3il_render.py`.
-- **Robomimic:** Record videos with `env.save_video=True`, `train.render.freq=<iterations>`, `train.render.num=<num_videos>`.
 

@@ -30,7 +30,7 @@
 </p>
 
 ## :loudspeaker: News
-* [2025/07/28] 
+* [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
 
 ## :rocket:  Installation
