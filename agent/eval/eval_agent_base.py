@@ -70,7 +70,7 @@ class EvalAgent:
         ############################################
         
         # Make vectorized env
-        self.env_name = cfg.env.name
+        self.env_name: str = cfg.env.name
         env_type = cfg.env.get("env_type", None)
         self.venv = make_async(
             cfg.env.name,
@@ -347,9 +347,17 @@ class EvalAgent:
                 self.venv.render(mode='human')
             
             if self.record_video:
-                frame_tuple = self.venv.render(mode='rgb_array', height=frame_height, width=frame_width)
+                if 'kitchen' in self.env_name.lower():
+                    # For kitchen environments, we render with the sim.render method, as D4RL kitchen does not support the standard render method.
+                    frame_tuple = self.venv.call_sync("get_rgb", method_kwargs={"width": frame_width, "height": frame_height})
+                    print(f"frame_tuple={frame_tuple}")
+                else:
+                    frame_tuple = self.venv.render(mode='rgb_array', height=frame_height, width=frame_width)
+                
                 if self.video_writer is not None:
                     frame = frame_tuple[self.record_env_index]
+                    if frame is None or frame == []:
+                        raise ValueError(f"frame is {frame} (empty), check your environment rendering settings.")
                     cv2.putText(frame, self.video_title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                     self.video_writer.write(frame)
             
