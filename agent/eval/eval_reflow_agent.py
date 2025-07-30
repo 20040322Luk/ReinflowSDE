@@ -38,6 +38,8 @@ class EvalReFlowAgent(EvalAgent):
         self.clip_intermediate_actions=True
         self.record_video =False
         self.record_env_index=0
+        self.frame_width = 640  # Default, can be overridden
+        self.frame_height = 480
         self.render_onscreen =False #not self.record_video #False
         self.denoising_steps = cfg.get("denoising_step_list", [1,2, 4,8,16,32,64,128])
         self.denoising_steps_trained = None # actually this is meaning less for reflow. it could be infinity. 

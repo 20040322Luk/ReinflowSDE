@@ -23,9 +23,6 @@
 
 
 
-
-
-
 """
 Parent eval agent class with state input, for openai-gym environment
 """
@@ -41,6 +38,7 @@ from env.gym_utils import make_async
 from omegaconf import OmegaConf
 import torch.nn as nn
 import os
+import cv2
 from agent.eval.visualize.utils import read_eval_statistics
 from util.dirs import REINFLOW_DIR 
 class EvalAgent:
@@ -59,7 +57,9 @@ class EvalAgent:
         
         ############ could be overload #############
         self.record_video = False
-        self.record_env_index = -1
+        self.frame_width = 640  # Default, can be overridden
+        self.frame_height = 480
+        self.record_env_index = 0
         self.render_onscreen = False
         self.denoising_steps = None
         self.denoising_steps_trained = None
@@ -301,14 +301,12 @@ class EvalAgent:
         self.plot_eval_statistics(statistics, self.eval_log_dir)
 
     def single_run(self, num_denoising_steps, options_venv):
-        import cv2
+        
         self.video_writer = None
         if self.record_video:
-            frame_width = 640  # Default, can be overridden
-            frame_height = 480
             fourcc = cv2.VideoWriter_fourcc(*'mp4v')
             video_path = os.path.join(self.eval_log_dir, f'{self.model.__class__.__name__}_{self.env_name}_step{num_denoising_steps}.mp4')
-            self.video_writer = cv2.VideoWriter(video_path, fourcc, 20.0, (frame_width, frame_height))
+            self.video_writer = cv2.VideoWriter(video_path, fourcc, 20.0, (self.frame_width, self.frame_height))
             self.video_title = f"{self.model.__class__.__name__}, {num_denoising_steps} steps"
         
         self.model.eval()
@@ -345,19 +343,20 @@ class EvalAgent:
             )
             if self.render_onscreen:
                 self.venv.render(mode='human')
-            
             if self.record_video:
-                if 'kitchen' in self.env_name.lower():
-                    # For kitchen environments, we render with the sim.render method, as D4RL kitchen does not support the standard render method.
-                    frame_tuple = self.venv.call_sync("get_rgb", method_kwargs={"width": frame_width, "height": frame_height})
-                    print(f"frame_tuple={frame_tuple}")
-                else:
-                    frame_tuple = self.venv.render(mode='rgb_array', height=frame_height, width=frame_width)
+                if self.cfg.get("robomimic_env_cfg_path", None): # robomimic
+                    frame_tuple = self.venv.render(mode='rgb_array')
+                elif 'kitchen' not in self.env_name.lower(): # gym
+                    frame_tuple = self.venv.render(mode='rgb_array', height=self.frame_height, width=self.frame_width)
+                else:# Kitchen
+                    raise ValueError(f"Cannot record video for kitchen environments with the current setup. self.env_name={self.env_name}") # For kitchen environments, we render with the sim.render method, as D4RL kitchen does not support the standard render method.
                 
                 if self.video_writer is not None:
                     frame = frame_tuple[self.record_env_index]
+                    print(f"frame_tuple={len(frame_tuple)}, frame={frame.shape}, frame={frame}")
                     if frame is None or frame == []:
                         raise ValueError(f"frame is {frame} (empty), check your environment rendering settings.")
+                    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
                     cv2.putText(frame, self.video_title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                     self.video_writer.write(frame)
             
@@ -404,7 +403,9 @@ class EvalAgent:
             episode_reward = np.array([])
             num_episodes_finished = 0
             avg_episode_reward = 0
+            avg_episode_reward_std=0
             avg_best_reward = 0
+            avg_best_reward_std=0
             success_rate = 0
             success_rate_std = 0  # Added
             log.info("[WARNING] No episode completed within the iteration!")

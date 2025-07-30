@@ -200,10 +200,20 @@ def make_async(
             else: # gym, Franka Kitchen
                 print(f'Making gym environment id={env_name}')
                 env = make_(env_name, **kwargs)
-
+        
         # add wrappers
         if wrappers is not None:
             for wrapper, args in wrappers.items():
+                # print(f"wrappers={wrapper}, args={args}")
+                # if robomimic_env_cfg_path is not None and wrapper == "robomimic_image":
+                #     if kwargs.get("robomimic_render_hw", None) is not None:
+                #         args["render_hw"] = kwargs["robomimic_render_hw"]
+                #         print(f"""Overload args["render_hw"] with {kwargs["robomimic_render_hw"]}-->{args['render_hw']}""")
+                #     else:
+                #         raise ValueError(
+                #             "robomimic_image wrapper requires robomimic_render_hw to be set in kwargs."
+                #         )
+                # print(f"""Robomimic renderhw={env_meta["render_hw"]}""")
                 env = wrapper_dict[wrapper](env, **args)
         
         if 'kitchen' in env_name.lower():
@@ -224,7 +234,6 @@ def make_async(
             # import inspect
             # print(f"inspect.getsource(env.unwrapped.sim.render)={inspect.getsource(env.unwrapped.sim.render)}")
             # print(f"inspect.getfile(env.unwrapped.sim.render)={inspect.getfile(env.unwrapped.sim.render)}")
-            # # exit()
             # def get_rgb(self, width=640, height=480, camera_name="right_cap"):
             #     try:
             #         img = self.unwrapped.sim.render(width=width, height=height, camera_id=-1)
@@ -239,7 +248,6 @@ def make_async(
             # os.environ['MUJOCO_GL'] = 'egl'
             # img = env.get_rgb(width=320, height=240, camera_name='left_cap')
             # print("DEBUG:: get_rgb() returned image with shape:", img.shape if img is not None else None)
-            # exit()
         return env
 
     def dummy_env_fn():

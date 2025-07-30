@@ -59,6 +59,8 @@ class EvalImgDiffusionAgent(EvalImgAgent):
         self.ddim_eta = 1.0
         
         self.render_onscreen = False 
+        self.frame_width = 640  # Default, can be overridden
+        self.frame_height = 480
         self.record_video = False
         self.record_env_index=0
         self.denoising_steps_trained = cfg.denoising_steps

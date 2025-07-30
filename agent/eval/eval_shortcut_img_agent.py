@@ -39,8 +39,10 @@ class EvalImgShortCutAgent(EvalImgAgent):
         self.denoising_steps =cfg.get("denoising_step_list", [1,2,4,8,16,32,64,128])
         self.plot_scale='standard'
         self.render_onscreen = False
-        self.record_video = False
+        self.record_video = True
         self.record_env_index=0
+        self.frame_width = 256  # Default, can be overridden
+        self.frame_height = 256
         self.denoising_steps_trained = self.model.max_denoising_steps
         self.model.show_inference_process = False #True # whether to print each integration step during sampling. 
         ####################################################################################
