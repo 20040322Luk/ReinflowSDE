@@ -60,7 +60,6 @@ env:
                      'robot0_gripper_qpos']
       image_keys: ['robot0_eye_in_hand_image']
       shape_meta: ${shape_meta}
-      # render_hw: [96, 96]  # default height, width of rendered images. 
     multi_step:
       n_obs_steps: ${cond_steps}
       n_action_steps: ${act_steps}

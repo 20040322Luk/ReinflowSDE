@@ -59,6 +59,7 @@ class EvalAgent:
         self.record_video = False
         self.frame_width = 640  # Default, can be overridden
         self.frame_height = 480
+        self.all_video_paths=[] # a list of video paths for each denoising step.
         self.record_env_index = 0
         self.render_onscreen = False
         self.denoising_steps = None
@@ -300,14 +301,18 @@ class EvalAgent:
         statistics = read_eval_statistics(npz_file_path=eval_statistics_path)
         self.plot_eval_statistics(statistics, self.eval_log_dir)
 
-    def single_run(self, num_denoising_steps, options_venv):
-        
+
+    def create_video_recorder(self, num_denoising_steps:int):
         self.video_writer = None
         if self.record_video:
             fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            video_path = os.path.join(self.eval_log_dir, f'{self.model.__class__.__name__}_{self.env_name}_step{num_denoising_steps}.mp4')
-            self.video_writer = cv2.VideoWriter(video_path, fourcc, 20.0, (self.frame_width, self.frame_height))
+            self.video_path = os.path.join(self.eval_log_dir, f'{self.model.__class__.__name__}_{self.env_name}_step{num_denoising_steps}.mp4')
+            self.video_writer = cv2.VideoWriter(self.video_path, fourcc, 20.0, (self.frame_width, self.frame_height))
             self.video_title = f"{self.model.__class__.__name__}, {num_denoising_steps} steps"
+        
+    def single_run(self, num_denoising_steps, options_venv):
+        
+        self.create_video_recorder(num_denoising_steps)
         
         self.model.eval()
         firsts_trajs = np.zeros((self.n_steps + 1, self.n_envs))
@@ -344,19 +349,17 @@ class EvalAgent:
             if self.render_onscreen:
                 self.venv.render(mode='human')
             if self.record_video:
-                if self.cfg.get("robomimic_env_cfg_path", None): # robomimic
-                    frame_tuple = self.venv.render(mode='rgb_array')
-                elif 'kitchen' not in self.env_name.lower(): # gym
-                    frame_tuple = self.venv.render(mode='rgb_array', height=self.frame_height, width=self.frame_width)
-                else:# Kitchen
+                if 'kitchen' in self.env_name.lower(): # Kitchen
                     raise ValueError(f"Cannot record video for kitchen environments with the current setup. self.env_name={self.env_name}") # For kitchen environments, we render with the sim.render method, as D4RL kitchen does not support the standard render method.
-                
+                else: # gym or robomimic or d3il
+                    frame_tuple = self.venv.render(mode='rgb_array', height=self.frame_height, width=self.frame_width)
                 if self.video_writer is not None:
                     frame = frame_tuple[self.record_env_index]
-                    print(f"frame_tuple={len(frame_tuple)}, frame={frame.shape}, frame={frame}")
+                    # print(f"frame_tuple={len(frame_tuple)}, frame={frame.shape}, frame={frame}")
                     if frame is None or frame == []:
                         raise ValueError(f"frame is {frame} (empty), check your environment rendering settings.")
                     frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+                    # add title to indicate the model type and the number of denoising steps. 
                     cv2.putText(frame, self.video_title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                     self.video_writer.write(frame)
             
@@ -366,7 +369,8 @@ class EvalAgent:
         
         if self.video_writer is not None:
             self.video_writer.release()
-            print(f"video saved to {video_path}")
+            self.all_video_paths.append(self.video_path)
+            print(f"Video saved to {self.video_path}")
 
         episodes_start_end = []
         for env_ind in range(self.n_envs):
@@ -426,19 +430,19 @@ class EvalAgent:
             f"""
             #############################################################
             {BOLDSTART}Evaluation{BOLDEND}
-            Model:               {self.model.__class__.__name__}
-            Environment:         {self.env_name} x {self.n_envs}
-            denoising steps:     {num_denoising_steps}
+            Model:                    {self.model.__class__.__name__:>30}
+            Environment:              {self.env_name + ' x ' + str(self.n_envs):>30}
+            denoising steps:          {num_denoising_steps:>30}
             
-            success_rate:        {success_rate*100: 8.3f} % ± {success_rate_std*100:8.3f} %
-            avg_episode_reward:  {avg_episode_reward:8.1f} ± {avg_episode_reward_std:2.1f}
+            success_rate:             {success_rate*100:>8.3f} % ± {success_rate_std*100:>8.3f} %
+            avg_episode_reward:       {avg_episode_reward:>8.1f} ± {avg_episode_reward_std:>2.1f}
             
             
-            avg_single_step_freq:{avg_single_step_freq:3.1f} ± {avg_single_step_freq_std:3.1f} HZ
+            avg_single_step_freq:     {avg_single_step_freq:>3.1f} ± {avg_single_step_freq_std:>3.1f} HZ
             
-            avg_traj_length:     {avg_traj_length:3.1f} ± {avg_traj_length_std:3.1f} steps
-            avg_best_reward:     {avg_best_reward:8.1f} ± {avg_best_reward_std:2.1f}
-            num_episode:         {num_episodes_finished:4d}
+            avg_traj_length:          {avg_traj_length:>3.1f} ± {avg_traj_length_std:>3.1f} steps
+            avg_best_reward:          {avg_best_reward:>8.1f} ± {avg_best_reward_std:>2.1f}
+            num_episode:              {num_episodes_finished:>4d}
             #############################################################
             """
         )
@@ -576,8 +580,10 @@ class EvalAgent:
 
         fig_path = os.path.join(REINFLOW_DIR, log_dir, f'denoise_step.png')
         plt.savefig(fig_path)
-        print(f"Finished evaluating {self.model.__class__.__name__} in environment {self.env_name}.\n\
-            Base_policy_path: {os.path.join(REINFLOW_DIR,self.base_policy_path)}\n\
-            Figure saved to {fig_path}\n\
-            Evaluation statistics saved to  {eval_statistics_path}")
+        print(f"Finished evaluating {self.model.__class__.__name__} in environment {self.env_name}")
+        print(f"Base_policy_path: {os.path.join(REINFLOW_DIR,self.base_policy_path)}")
+        print(f"Figure saved to {fig_path}")
+        print(f"Evaluation statistics saved to  {eval_statistics_path}")
+        if self.record_video:
+            print(f"Video(s) saved to {self.all_video_paths}")   
         plt.close()

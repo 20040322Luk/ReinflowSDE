@@ -204,16 +204,6 @@ def make_async(
         # add wrappers
         if wrappers is not None:
             for wrapper, args in wrappers.items():
-                # print(f"wrappers={wrapper}, args={args}")
-                # if robomimic_env_cfg_path is not None and wrapper == "robomimic_image":
-                #     if kwargs.get("robomimic_render_hw", None) is not None:
-                #         args["render_hw"] = kwargs["robomimic_render_hw"]
-                #         print(f"""Overload args["render_hw"] with {kwargs["robomimic_render_hw"]}-->{args['render_hw']}""")
-                #     else:
-                #         raise ValueError(
-                #             "robomimic_image wrapper requires robomimic_render_hw to be set in kwargs."
-                #         )
-                # print(f"""Robomimic renderhw={env_meta["render_hw"]}""")
                 env = wrapper_dict[wrapper](env, **args)
         
         if 'kitchen' in env_name.lower():
