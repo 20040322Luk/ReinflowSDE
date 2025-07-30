@@ -45,11 +45,12 @@ from agent.eval.visualize.utils import read_eval_statistics
 from util.dirs import REINFLOW_DIR 
 class EvalAgent:
     def __init__(self, cfg):
-        super().__init__()
         
         self.cfg = cfg
         self.device = cfg.device
         self.base_policy_path = cfg.base_policy_path
+        if not self.base_policy_path:
+            raise ValueError("base_policy_path must be set in the config file!")
         self.eval_log_dir = cfg.get('eval_log_dir', None)
         self.seed = cfg.get("seed", 42)
         random.seed(self.seed)

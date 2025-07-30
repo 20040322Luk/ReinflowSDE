@@ -22,8 +22,8 @@ eval_log_dir:
 seed: 42
 device: cuda:2
 
-denoising_steps: 4 #20
-denoising_step_list: [4] #20
+denoising_steps: 4
+denoising_step_list: [4]
 load_ema: True
 
 batch_size: 128
