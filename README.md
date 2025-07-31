@@ -8,7 +8,7 @@
 
 
 <!-- links: -->
-<hr>
+
 
 <!-- <div align="center">
   <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" width="65%">
@@ -19,7 +19,7 @@
   <img src="./sample_figs/shortcut_transport_4steps.gif" width="42%" alt="Shortcut Transport">
 </p>
 
-
+<hr>
 <div align="center">
   <a href="https://reinflow.github.io/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/Visit-Website-blue?style=for-the-badge" />
