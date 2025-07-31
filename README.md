@@ -2,9 +2,11 @@
 # ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning
 
 <!-- schematic: -->
-<div style="text-align: center;">
-  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%" style="display: inline-block;" />
-</div>
+<p align="center">
+  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
+</p>
+
+
 <!-- links: -->
 <hr>
 
