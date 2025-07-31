@@ -13,9 +13,11 @@
 </div> -->
 
 
-<div align="center" style="display: flex; justify-content: center; gap: 0;">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" style="width: 32.5%; margin: 0;" alt="Shortcut Flow Can">
-  <img src="./sample_figs/shortcut_transport_4steps.gif" title="Shortcut Transport at 4 steps" style="width: 32.5%; margin: 0;" alt="Shortcut Transport">
+<div style="text-align: center;">
+  <div style="display: inline-block; margin: 0;">
+    <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" style="width: 32.5%; margin: 0; vertical-align: top;" alt="Shortcut Flow Can">
+    <img src="./sample_figs/shortcut_transport_4steps.gif" title="Shortcut Transport at 4 steps" style="width: 32.5%; margin: 0; vertical-align: top;" alt="Shortcut Transport">
+  </div>
 </div>
 
 
