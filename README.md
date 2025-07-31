@@ -13,8 +13,8 @@
 </div> -->
 
 <p align="center">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="35%" alt="Shortcut Flow Can">
-  <img src="./sample_figs/shortcut_transport_4steps.gif" width="35%" alt="Shortcut Transport">
+  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="42%" alt="Shortcut Flow Can">
+  <img src="./sample_figs/shortcut_transport_4steps.gif" width="42%" alt="Shortcut Transport">
 </p>
 
 
