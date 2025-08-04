@@ -60,7 +60,7 @@ How does it work?
 - ✅ Any other policy defined by ODEs (in principle)
 
 📈 **Empirical Results**: ReinFlow achieves strong performance across a variety of robotic tasks:
-- 🦵 Locomotion (OpenAI Gym)  
+- 🦵 Legged Locomotion (OpenAI Gym)  
 - ✋ State-based manipulation (Franka Kitchen)  
 - 👀 Visual manipulation (Robomimic)
 
