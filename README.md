@@ -44,9 +44,13 @@
 
 
 
+
+This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning"_.  
+
+Please give it a star **:star:** if you like it! 
+
 ## 🚀 About ReinFlow
 
-This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning"_.
 
 **ReinFlow** is a flexible **policy gradient framework** for fine-tuning **flow matching policies** at **any denoising step**.
 
