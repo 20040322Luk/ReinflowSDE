@@ -30,7 +30,7 @@
   <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
     <img alt="Checkpoints" src="https://img.shields.io/badge/Download-Checkpoints-orange?style=for-the-badge" />
   </a>
-  <!-- <a href="https://x.com/TongheZhang01/status/1951121394886226194" target="_blank">
+  <!-- <a href="" target="_blank">
     <img alt="X" src="https://img.shields.io/badge/View-X_post-black?style=for-the-badge" />
   </a> -->
 </div>
