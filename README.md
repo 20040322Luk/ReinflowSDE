@@ -20,7 +20,7 @@
 </p>
 
 <hr>
-<div align="center">
+<!-- <div align="center">
   <a href="https://reinflow.github.io/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/Visit-Website-blue?style=for-the-badge" />
   </a>
@@ -33,10 +33,25 @@
   <a href="https://wandb.ai/reinflow/projects/" target="_blank">
     <img alt="Checkpoints" src="https://img.shields.io/badge/WandB-Logs-yellow?style=for-the-badge" />
   </a>
-  <!-- <a href="" target="_blank">
-    <img alt="X" src="https://img.shields.io/badge/View-X_post-black?style=for-the-badge" />
-  </a> -->
+</div> -->
+
+<div align="center">
+  <a href="https://reinflow.github.io/" target="_blank">
+    <img alt="Website" src="https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge&logo=internet-explorer&logoColor=white" />
+  </a>
+  <a href="https://github.com/ReinFlow/ReinFlow/tree/release/docs" target="_blank">
+    <img alt="Docs" src="https://img.shields.io/badge/Docs-Read-purple?style=for-the-badge&logo=readthedocs&logoColor=white&logoPosition=right" />
+  </a>
+  <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
+    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=yellow&logoPosition=right" />
+  </a>
+  <a href="https://wandb.ai/reinflow/projects/" target="_blank">
+    <img alt="WandB Logs" src="https://img.shields.io/badge/W%26B-Logs-ffbe00?style=for-the-badge&logo=weightsandbiases&logoColor=ffbe00&logoPosition=right" />
+  </a>
 </div>
+
+
+
 <!-- mini table of contents: -->
 <p align="center">
   <a href="#rocket-installation">Installation</a> |
