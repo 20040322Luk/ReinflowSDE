@@ -105,10 +105,13 @@ Please refer to [Custom.md](docs/Custom.md).
 ## :rocket: Debug Aid and Known Issues
 Please refer to [KnownIssues.md](docs/KnownIssues.md) to see how to resolve errors you encounter.
 
-## :star: Comming Soon
+## :star: Todo
 - Support fine-tuning [Mean Flow](https://arxiv.org/abs/2505.13447) with online RL
-- Possible open-source the WandB projects via a corporate account.   (currently is in .csv format)
 - Replace figs with videos in the drop-down menu of specific tasks in the webpage.
+- [x] Release the WandB projects via a corporate account
+- [x] Release Docs
+- [x] Release checkpoints
+- [x] Release codebase
 
 ## License
 This repository is released under the MIT license. See [LICENSE](LICENSE). 
