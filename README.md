@@ -20,20 +20,6 @@
 </p>
 
 <hr>
-<!-- <div align="center">
-  <a href="https://reinflow.github.io/" target="_blank">
-    <img alt="Website" src="https://img.shields.io/badge/Visit-Website-blue?style=for-the-badge" />
-  </a>
-  <a href="https://github.com/ReinFlow/ReinFlow/tree/release/docs" target="_blank">
-    <img alt="Docs" src="https://img.shields.io/badge/Read-Docs-purple?style=for-the-badge" />
-  </a>
-  <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
-    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-orange?style=for-the-badge" />
-  </a>
-  <a href="https://wandb.ai/reinflow/projects/" target="_blank">
-    <img alt="Checkpoints" src="https://img.shields.io/badge/WandB-Logs-yellow?style=for-the-badge" />
-  </a>
-</div> -->
 
 <div align="center">
   <a href="https://reinflow.github.io/" target="_blank">
@@ -98,6 +84,7 @@ Learn more on our 🔗 [project website](https://reinflow.github.io/) or check o
 
 
 ## :loudspeaker: News
+* [2025/08/18] All training metrics (losses, reward, etc) released to help you reproduce our results. Check out [these WandB projects](https://wandb.ai/reinflow/projects/).  
 * [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
 * [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
