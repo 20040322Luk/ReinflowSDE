@@ -31,9 +31,6 @@
   <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
     <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=yellow&logoPosition=right" />
   </a>
-  <a href="https://wandb.ai/reinflow/projects/" target="_blank">
-    <img alt="WandB Logs" src="https://img.shields.io/badge/W%26B-Logs-ffbe00?style=for-the-badge&logo=weightsandbiases&logoColor=ffbe00&logoPosition=right" />
-  </a>
 </div>
 
 
