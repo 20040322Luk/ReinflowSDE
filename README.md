@@ -81,7 +81,8 @@ Learn more on our 🔗 [project website](https://reinflow.github.io/) or check o
 
 
 ## :loudspeaker: News
-* [2025/08/18] All training metrics (losses, reward, etc) released to help you reproduce our results. Check out [these WandB projects](https://wandb.ai/reinflow/projects/).  
+* [2025/08/18] All training metrics (losses, reward, etc) released to help you reproduce our results. 
+<!-- Check out [these WandB projects](https://wandb.ai/reinflow/projects/).   -->
 * [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
 * [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
