@@ -57,7 +57,7 @@ def get_dataset_download_url(cfg):
     # Gym
     if env == "hopper-medium-v2":
         if use_d4rl_dataset:
-            return "https://drive.google.com/drive/folders/13QiGNv3-RE9DdmAZ7HvKKb0KRrmGUoyg?usp=drive_link"
+            return "https://drive.google.com/drive/folders/1RyqYGgRZAw5rxNrZSYKGvE7q5Z2-mRWv?usp=sharing"
         else:
             return "https://drive.google.com/drive/u/1/folders/18Ti-92XVq3sE24K096WAxjC_SCCngeHd"
     elif env == "walker2d-medium-v2":
