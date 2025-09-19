@@ -20,6 +20,8 @@
 
 <hr>
 
+</br>
+
 <div align="center">
   <a href="https://reinflow.github.io/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge&logo=internet-explorer&logoColor=white" />
@@ -41,6 +43,9 @@
     <img alt="WandB" src="https://img.shields.io/badge/WandB-Metrics-yellow?style=for-the-badge&logo=weightsandbiases&logoColor=dark-orange" />
   </a>
 </div>
+
+<br>
+
 
 <!-- mini table of contents: -->
 <p align="center">
@@ -72,6 +77,7 @@ How does it work?
 👉 Then, fine-tune them with **online reinforcement learning** using ReinFlow!
 
 🧩 **Supports**:
+
 - ✅ 1-Rectified Flow  
 - ✅ Shortcut Models  
 - ✅ Any other policy defined by ODEs (in principle)
@@ -90,7 +96,8 @@ Learn more on our 🔗 [project website](https://reinflow.github.io/) or check o
 
 
 ## :loudspeaker: News
-* [2025/08/18] All training metrics (losses, reward, etc) released to help you reproduce our results. 
+* [2025/09/18] Paper accepted at The 39th Annual Conference on Neural Information Processing Systems (NeurIPS 2025). 
+* [2025/08/18] All training metrics (losses, reward, etc) released in [WandB](https://wandb.ai/reinflow/projects) to help you reproduce our results. 
 * [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
 * [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
@@ -114,8 +121,8 @@ Please refer to [Custom.md](docs/Custom.md).
 Please refer to [KnownIssues.md](docs/KnownIssues.md) to see how to resolve errors you encounter.
 
 ## :star: Todo
-- Support fine-tuning [Mean Flow](https://arxiv.org/abs/2505.13447) with online RL
-- Replace figs with videos in the drop-down menu of specific tasks in the webpage.
+- [ ] Support fine-tuning [Mean Flow](https://arxiv.org/abs/2505.13447) with online RL
+- [ ] Release videos
 - [x] Release the WandB projects via a corporate account
 - [x] Release Docs
 - [x] Release checkpoints
