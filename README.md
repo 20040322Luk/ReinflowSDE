@@ -1,6 +1,8 @@
 
 # ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning
 
+<font size="4">Paper accepted at <span style="color: red;">**NeurIPS 2025**</span></font>
+
 <!-- schematic: -->
 <p align="center">
   <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
@@ -48,7 +50,8 @@
   <a href="#rocket-adding-your-own-dataset-or-environment">Add Dataset/Environment</a> <br>
   <a href="#rocket-debug-aid-and-known-issues">Debug & Known Issues</a> |
   <a href="#license">License</a> |
-  <a href="#acknowledgement">Acknowledgement</a>
+  <a href="#acknowledgement">Acknowledgement</a> |
+  <a href="#cite-our-work">Citation</a>
 </p>
 
 
