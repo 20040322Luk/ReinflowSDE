@@ -7,9 +7,6 @@
 </p>
 
 
-<!-- links: -->
-
-
 <!-- <div align="center">
   <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" width="65%">
 </div> -->
@@ -26,14 +23,22 @@
     <img alt="Website" src="https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge&logo=internet-explorer&logoColor=white" />
   </a>
   <a href="https://github.com/ReinFlow/ReinFlow/tree/release/docs" target="_blank">
-    <img alt="Docs" src="https://img.shields.io/badge/Docs-Read-purple?style=for-the-badge&logo=readthedocs&logoColor=white&logoPosition=right" />
+    <img alt="Docs" src="https://img.shields.io/badge/Docs-Read-purple?style=for-the-badge&logo=readthedocs&logoColor=white" />
+  </a>
+  <a href="https://arxiv.org/abs/2505.22094" target="_blank">
+    <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2505.22094-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white" />
+  </a>
+  <br>
+  <a href="https://neurips.cc/virtual/2025/poster/119473" target="_blank">
+    <img alt="NeurIPS" src="https://img.shields.io/badge/NeurIPS-2025-orange?style=for-the-badge&logo=ai&logoColor=white" />
   </a>
   <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
-    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=yellow&logoPosition=right" />
+    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=black" />
+  </a>
+  <a href="https://wandb.ai/reinflow/projects" target="_blank">
+    <img alt="WandB" src="https://img.shields.io/badge/WandB-Metrics-black?style=for-the-badge&logo=weightsandbiases&logoColor=white" />
   </a>
 </div>
-
-
 
 <!-- mini table of contents: -->
 <p align="center">
@@ -52,6 +57,7 @@
 This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning"_.  
 
 If you like our work, we'll be happy if you give us a star **:star:**!
+
 
 ## 🚀 About ReinFlow
 
@@ -123,6 +129,19 @@ This repository was developed from multiple open-source projects. Major referenc
 - [DPPO, Ren et al.](https://github.com/irom-princeton/dppo): DPPO official implementation.  
 
 For more references, please refer to [Acknowledgement.md](docs/Acknowledgement.md).
+
+## Cite our work
+```bibtex
+@misc{zhang2025reinflowfinetuningflowmatching,
+    title={ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning},
+    author={Tonghe Zhang and Chao Yu and Sichang Su and Yu Wang},
+    year={2025},
+    eprint={2505.22094},
+    archivePrefix={arXiv},
+    primaryClass={cs.RO},
+    url={https://arxiv.org/abs/2505.22094},
+}
+```
 
 ## Star History
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100%; margin: 0; padding: 0;">
