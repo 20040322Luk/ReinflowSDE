@@ -23,20 +23,20 @@
     <img alt="Website" src="https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge&logo=internet-explorer&logoColor=white" />
   </a>
   <a href="https://github.com/ReinFlow/ReinFlow/tree/release/docs" target="_blank">
-    <img alt="Docs" src="https://img.shields.io/badge/Docs-Read-purple?style=for-the-badge&logo=readthedocs&logoColor=white" />
+    <img alt="Docs" src="https://img.shields.io/badge/Docs-Read-green?style=for-the-badge&logo=readthedocs&logoColor=white" />
   </a>
-  <a href="https://arxiv.org/abs/2505.22094" target="_blank">
-    <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2505.22094-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white" />
+  <a href="https://neurips.cc/virtual/2025/poster/119473" target="_blank">
+    <img alt="NeurIPS" src="https://img.shields.io/badge/NeurIPS2025-Homepage-purple?style=for-the-badge&logo=ai&" />
   </a>
   <br>
-  <a href="https://neurips.cc/virtual/2025/poster/119473" target="_blank">
-    <img alt="NeurIPS" src="https://img.shields.io/badge/NeurIPS-2025-orange?style=for-the-badge&logo=ai&logoColor=white" />
+   <a href="https://arxiv.org/abs/2505.22094" target="_blank">
+    <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2505.22094-red?style=for-the-badge&logo=arxiv&logoColor=red" />
   </a>
   <a href="https://huggingface.co/datasets/ReinFlow/ReinFlow-data-checkpoints-logs/" target="_blank">
-    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=black" />
+    <img alt="Checkpoints" src="https://img.shields.io/badge/HuggingFace-Checkpoints-yellow?style=for-the-badge&logo=huggingface&logoColor=yellow" />
   </a>
   <a href="https://wandb.ai/reinflow/projects" target="_blank">
-    <img alt="WandB" src="https://img.shields.io/badge/WandB-Metrics-black?style=for-the-badge&logo=weightsandbiases&logoColor=white" />
+    <img alt="WandB" src="https://img.shields.io/badge/WandB-Metrics-yellow?style=for-the-badge&logo=weightsandbiases&logoColor=dark-orange" />
   </a>
 </div>
 
