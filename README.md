@@ -91,7 +91,7 @@ How does it work?
 - ✅ Makes policy probabilities tractable, even with **very few denoising steps** (e.g., 4, 2, or 1)  
 - ✅ Robust to discretization and Monte Carlo approximation errors
 
-Learn more on our 🔗 [project website](https://reinflow.github.io/) or check out the arXiv paper. 
+Learn more on our 🔗 [project website](https://reinflow.github.io/) or check out the [arXiv paper](https://arxiv.org/abs/2505.22094). 
 
 
 
