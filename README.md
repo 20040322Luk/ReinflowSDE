@@ -101,7 +101,8 @@ Learn more on our 🔗 [project website](https://reinflow.github.io/) or check o
 * [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
 * [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
 * [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
-* [2025/05/28] Paper is posted on [arXiv](https://arxiv.org/abs/2505.22094)! 
+* [2025/05/28] Paper is posted on [arXiv](https://arxiv.org/abs/2505.22094)!
+
 
 ## :rocket:  Installation
 Please follow the steps in [installation/reinflow-setup.md](./installation/reinflow-setup.md).
