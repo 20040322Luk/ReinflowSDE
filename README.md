@@ -2,7 +2,11 @@
 # ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning
 
 ### 💐 Paper accepted at <span style="color:red;">NeurIPS 2025</span></span>
-  
+
+Authors: 
+[Tonghe Zhang](https://tonghe-zhang.github.io/), [Chao Yu](https://nicsefc.ee.tsinghua.edu.cn/people/ChaoYu), [Sichang Su](https://destiny000621.github.io/), [Yu Wang](https://nicsefc.ee.tsinghua.edu.cn/people/YuWang)
+
+
 <!-- schematic: -->
 <p align="center">
   <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
