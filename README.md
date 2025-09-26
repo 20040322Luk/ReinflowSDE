@@ -7,8 +7,6 @@
 
 $^1$ Carnegie Mellon University  $^2$ Tsinghua University  $^3$ University of Texas at Austin
 
-</br>
-
 <div align="center">
   <a href="https://reinflow.github.io/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge&logo=internet-explorer&logoColor=white" />
