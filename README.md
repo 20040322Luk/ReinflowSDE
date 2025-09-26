@@ -7,24 +7,6 @@
 
 $^1$ Carnegie Mellon University  $^2$ Tsinghua University  $^3$ University of Texas at Austin
 
-
-<!-- schematic: -->
-<p align="center">
-  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
-</p>
-
-
-<!-- <div align="center">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" width="65%">
-</div> -->
-
-<p align="center">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="42%" alt="Shortcut Flow Can">
-  <img src="./sample_figs/shortcut_transport_4steps.gif" width="42%" alt="Shortcut Transport">
-</p>
-
-<hr>
-
 </br>
 
 <div align="center">
@@ -50,6 +32,26 @@ $^1$ Carnegie Mellon University  $^2$ Tsinghua University  $^3$ University of Te
 </div>
 
 <br>
+
+<!-- schematic: -->
+<p align="center">
+  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
+</p>
+
+
+<!-- <div align="center">
+  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" width="65%">
+</div> -->
+
+<p align="center">
+  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="42%" alt="Shortcut Flow Can">
+  <img src="./sample_figs/shortcut_transport_4steps.gif" width="42%" alt="Shortcut Transport">
+</p>
+
+<hr>
+
+
+
 
 
 <!-- mini table of contents: -->
