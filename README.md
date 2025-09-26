@@ -3,8 +3,8 @@
 
 ### 💐 Paper accepted at <span style="color:red;">NeurIPS 2025</span></span>
 
-Authors: 
-[Tonghe Zhang](https://tonghe-zhang.github.io/), [Chao Yu](https://nicsefc.ee.tsinghua.edu.cn/people/ChaoYu), [Sichang Su](https://destiny000621.github.io/), [Yu Wang](https://nicsefc.ee.tsinghua.edu.cn/people/YuWang)
+[Tonghe Zhang](https://tonghe-zhang.github.io/)$^1$, [Chao Yu](https://nicsefc.ee.tsinghua.edu.cn/people/ChaoYu)$^2$, [Sichang Su](https://destiny000621.github.io/)$^3$, [Yu Wang](https://nicsefc.ee.tsinghua.edu.cn/people/YuWang)$^2$
+> $^1$ Carnegie Mellon University  $^2$ Tsinghua University  $^3$ University of Texas at Austin
 
 
 <!-- schematic: -->
