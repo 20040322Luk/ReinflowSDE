@@ -33,17 +33,12 @@ $^1$ Carnegie Mellon University  $^2$ Tsinghua University $^3$ Beijing Zhongguan
 
 <!-- schematic: -->
 <p align="center">
-  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="90%">
+  <img src="sample_figs/schematic.png" alt="Architecture Diagram" width="75%">
 </p>
 
-
-<!-- <div align="center">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" title="Fine-tuned Shortcut Flow in Robomimic-can at 1 denoising step" width="65%">
-</div> -->
-
 <p align="center">
-  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="42%" alt="Shortcut Flow Can">
-  <img src="./sample_figs/shortcut_transport_4steps.gif" width="42%" alt="Shortcut Transport">
+  <img src="./sample_figs/ShortCutFlow_can_step1_1080_1920.gif" width="35%" alt="Shortcut Flow Can">
+  <img src="./sample_figs/shortcut_transport_4steps.gif" width="35%" alt="Shortcut Transport">
 </p>
 
 <hr>
@@ -73,7 +68,7 @@ If you like our work, we'll be happy if you give us a star **:star:**!
 
 
 ## :loudspeaker: News
-* [2025/10/16] **We scaled up ReinFlow to fine-tune large VLA like $\pi_0$.**
+* [2025/10/16] **We scaled up ReinFlow to fine-tune large VLA like $\pi_0, \pi_{0.5}$.**
   Code, hyperparamters in LIBERO environment released at [RLinf](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html). 
 * [2025/09/18] Paper accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
 * [2025/08/18] All training metrics (losses, reward, etc) released in [WandB](https://wandb.ai/reinflow/projects) to help you reproduce our results. 
