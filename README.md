@@ -72,6 +72,18 @@ If you like our work, we'll be happy if you give us a star **:star:**!
 🔥 **<u>ReinFlow can now scale to fine-tune 3B VLA models like $\pi_0$ via massively parallel RL.</u>**
 
 
+## :loudspeaker: News
+* [2025/10/16] **We scaled up ReinFlow to fine-tune large VLA like $\pi_0$.**
+  Code, hyperparamters in LIBERO environment released at [RLinf](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html). 
+* [2025/09/18] Paper accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
+* [2025/08/18] All training metrics (losses, reward, etc) released in [WandB](https://wandb.ai/reinflow/projects) to help you reproduce our results. 
+* [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
+* [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
+* [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
+* [2025/05/28] Paper is posted on [arXiv](https://arxiv.org/abs/2505.22094)!
+
+
+
 ## 🚀 About ReinFlow
 
 
@@ -99,16 +111,6 @@ How does it work?
 Learn more on our 🔗 [project website](https://reinflow.github.io/) or check out the [arXiv paper](https://arxiv.org/abs/2505.22094). 
 
 
-
-## :loudspeaker: News
-* [2025/10/16] **We scaled up ReinFlow to fine-tune large VLA like $\pi_0$.**
-  Code, hyperparamters in LIBERO environment released at [RLinf](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html). 
-* [2025/09/18] Paper accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
-* [2025/08/18] All training metrics (losses, reward, etc) released in [WandB](https://wandb.ai/reinflow/projects) to help you reproduce our results. 
-* [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
-* [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
-* [2025/06/14] Updated webpage for a detailed explanation to the algorithm design.
-* [2025/05/28] Paper is posted on [arXiv](https://arxiv.org/abs/2505.22094)!
 
 
 ## :rocket:  Installation
