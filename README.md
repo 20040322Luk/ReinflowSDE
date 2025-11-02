@@ -56,22 +56,15 @@ $^1$ Carnegie Mellon University  $^2$ Tsinghua University $^3$ Beijing Zhongguan
   <a href="#cite-our-work">Citation</a>
 </p>
 
-
-
-
 This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning"_.  
 
-If you like our work, we'll be happy if you give us a star **:star:**!
-
-
-🔥 **<u>ReinFlow now scales to fine-tune 3B VLA models like $\pi_0, \pi_{0.5}$ via massively parallel RL.</u>**
-
+If you like our work, it will be wonderful if you give us a star **:star:**!
 
 ## :loudspeaker: News
-* **[2025/10/16]** We scaled up **ReinFlow** to fine-tune VLA models such as **$\pi_0$** and **$\pi_{0.5}$**.  
-  The code, hyperparameters for the LIBERO environment, and ManiSkill results are available at [**RLinf**](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html).
-
-* [2025/09/18] Paper accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
+* **[2025/10/16]** 🔥 We scaled up **ReinFlow** to fine-tune VLA models such as **$\pi_0$** and **$\pi_{0.5}$** via parallel online RL.  
+  The code and LIBERO environment hyperparameters are available at [**RLinf**](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html).  
+  A technical report including results on LIBERO and ManiSkill/Simpler is available at [**$\pi_{\texttt{RL}}$**](https://arxiv.org/abs/2510.25889).
+* [2025/09/18] ReinFlow paper is accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
 * [2025/08/18] All training metrics (losses, reward, etc) released in [WandB](https://wandb.ai/reinflow/projects) to help you reproduce our results. 
 * [2025/07/30] Fixed the rendering bug in Robomimic. Now supports rendering at 1080p resolution. 
 * [2025/07/29] Add tutorial on how to record videos during evaluation in the [docs](docs/ReproduceExps.md)
