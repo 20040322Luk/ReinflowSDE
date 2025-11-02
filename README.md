@@ -61,7 +61,7 @@ This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Pol
 If you like our work, it will be wonderful if you give us a star **:star:**!
 
 ## :loudspeaker: News
-* [2025/10/16] 🔥 **We scaled up ReinFlow to fine-tune VLA models such as $\pi_0$ and $\pi_{0.5}$.**  
+* [2025/11/2] 🔥 **We scaled up ReinFlow to fine-tune VLA models such as $\pi_0$ and $\pi_{0.5}$.**  
   The **code and checkpoint** for the LIBERO environment are available at [**RLinf-pi0**](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html).  
   A **technical report** including results on LIBERO and ManiSkill/Simpler is available at **$\pi_{\texttt{RL}}$** ([**Online RL Fine-tuning for Flow-based Vision-Language-Action Models: arXiv:2510.25889**](https://arxiv.org/abs/2510.25889)).
 * [2025/09/18] ReinFlow paper is accepted at [NeurIPS 2025](https://neurips.cc/virtual/2025/poster/119473). 
