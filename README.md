@@ -99,9 +99,6 @@ How does it work?
 
 Learn more on our 🔗 [project website](https://reinflow.github.io/) or check out the [arXiv paper](https://arxiv.org/abs/2505.22094). 
 
-
-
-
 ## :rocket:  Installation
 Please follow the steps in [installation/reinflow-setup.md](./installation/reinflow-setup.md).
 
@@ -145,6 +142,8 @@ This repository was developed from multiple open-source projects. Major referenc
 - [TorchCFM, Tong et al.](https://github.com/atong01/conditional-flow-matching): Conditional flow-matching repository.  
 - [Shortcut Models, Francs et al.](https://github.com/kvfrans/shortcut-models): One-step Diffusion via Shortcut Models. 
 - [DPPO, Ren et al.](https://github.com/irom-princeton/dppo): DPPO official implementation.  
+
+We also thank our collaborators from the open-source RL infrastructure project [RLinf](https://github.com/RLinf/RLinf) for their generous support, which enabled large-scale testing of ReinFlow with models of up to 3 billion parameters in up to 320 parallel visual manipulation environments. 
 
 For more references, please refer to [Acknowledgement.md](docs/Acknowledgement.md).
 
