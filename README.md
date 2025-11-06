@@ -118,12 +118,12 @@ Please refer to [Custom.md](docs/Custom.md).
 Please refer to [KnownIssues.md](docs/KnownIssues.md) to see how to resolve errors you encounter.
 
 ## :rocket: Tips on Hyperparameter Tuning
-After training flow policies with RL in multiple benchmarks (OpenAI Gym, Franka Kitchen, Robomimic, LIBERO, ManiSkill, MetaWorld) across diverse model scales (3M to 3B), 
+After training flow policies with RL in multiple benchmarks (OpenAI Gym, Franka Kitchen, Robomimic, LIBERO, ManiSkill, MetaWorld) and scaling model size from 3M to 3B, 
 we discover that these hyperparameters are critical to RL's success, especially in visual manipulation from sparse reward: 
 * `SFT success rate`. RL cannot train visual manipulation policies easily from scratch, so try to optimize your SFT success rate before starting RL. The stronger your SFT is, the easier it will be for RL. 
 * `Noise level`. When the SFT success rate is low, tune down noise to [0.04, 0.10] or [0.05, 0.12] to avoid too much erroneous behaviors in early-stage exploration.
   When the SFT success rate is high, relax the noise logvariance to [0.08, 0.16] is usually a good practice. 
-* `Entropy coefficient`. Turn it off first. When pocliy struggles to improve, add a small coefficient of 0.05 may help. When the policy is small and the problem is simple (dense reward, low-dim input),
+* `Entropy coefficient`. Turn it off first. When pocliy struggles to improve, add a small coefficient of 0.005 may help. When the policy is small and the problem is simple (dense reward, low-dim input),
 use larger entropy coefficient. Otherwise be cautious of increasing this constant.
 * `Critic warmup`. The stronger your SFT checkpoint is, the more you need a critic warmup. Try to pick the correct critic network architecture and add some rounds of warmup before policy gradient ascent. Try to make the critic loss decrease smoothly after the warmup phase, and keep a keen eye on the explained variance--it should quickly increase to a higher level. However, even without warmup, ReinFlow should be able to increase success rate eventually, but that usually slows down convergence. 
 
