@@ -61,6 +61,7 @@ This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Pol
 If you like our work, it will be wonderful if you give us a star **:star:**!
 
 ## :loudspeaker: News
+* [2025/11/7]  Update limitation section
 * [2025/11/5]  Update tips on hyperparameter tuning. 
 * [2025/11/2] 🔥 **We scaled up ReinFlow to fine-tune VLA models such as $\pi_0$ and $\pi_{0.5}$.**  
   **The code and checkpoint for the LIBERO environment are available at [**RLinf-pi0**](https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html).**
@@ -126,6 +127,10 @@ we discover that these hyperparameters are critical to RL's success, especially 
 * `Entropy coefficient`. Turn it off first. When pocliy struggles to improve, add a small coefficient of 0.005 may help. When the policy is small and the problem is simple (dense reward, low-dim input),
 use larger entropy coefficient. Otherwise be cautious of increasing this constant.
 * `Critic warmup`. The stronger your SFT checkpoint is, the more you need a critic warmup. Try to pick the correct critic network architecture and add some rounds of warmup before policy gradient ascent. Try to make the critic loss decrease smoothly after the warmup phase, and keep a keen eye on the explained variance--it should quickly increase to a higher level. However, even without warmup, ReinFlow should be able to increase success rate eventually, but that usually slows down convergence. 
+
+## :rocket: Limitation and Caveats
+Based on the feedback from the community, we provide a limitation section to stress the imperfections of this algorithm with some caveats. We hope this will inspire future research. 
+* ReinFlow may not be an optimal method to train RL agents from scratch. Our method is designed for fine-tuning purposes, not pre-training.
 
 ## :star: Todo
 - [x] Release pi0, pi0.5 fine-tuning results.
