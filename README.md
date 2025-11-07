@@ -129,7 +129,7 @@ use larger entropy coefficient. Otherwise be cautious of increasing this constan
 * `Critic warmup`. The stronger your SFT checkpoint is, the more you need a critic warmup. Try to pick the correct critic network architecture and add some rounds of warmup before policy gradient ascent. Try to make the critic loss decrease smoothly after the warmup phase, and keep a keen eye on the explained variance--it should quickly increase to a higher level. However, even without warmup, ReinFlow should be able to increase success rate eventually, but that usually slows down convergence. 
 
 ## :rocket: Limitation and Caveats
-Based on the feedback from the community, we provide a limitation section to stress the imperfections of this algorithm with some caveats. We hope this will inspire future research. 
+Based on community feedback, we have added a limitations section to highlight the shortcomings of our algorithm and note important caveats. We hope this discussion will inspire future research.
 * ReinFlow may not be an optimal method to train RL agents from scratch. Our method is designed for fine-tuning purposes, not pre-training.
 
 ## :star: Todo
