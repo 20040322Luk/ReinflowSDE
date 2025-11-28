@@ -61,6 +61,7 @@ This is the official implementation of _"ReinFlow: Fine-tuning Flow Matching Pol
 If you like our work, it will be wonderful if you give us a star **:star:**!
 
 ## :loudspeaker: News
+* [2025/11/28]  **🔥 ReinFlow now supports fine-tuning GR00T VLA models from NVIDIA.** Check it out at [**RLinf-GR00T-N1.5**]([https://rlinf.readthedocs.io/en/latest/rst_source/examples/pi0.html](https://rlinf.readthedocs.io/en/latest/rst_source/examples/gr00t.html))
 * [2025/11/7]  Update limitation section
 * [2025/11/5]  Update tips on hyperparameter tuning. 
 * [2025/11/2] 🔥 **We scaled up ReinFlow to fine-tune VLA models such as $\pi_0$ and $\pi_{0.5}$.**  
