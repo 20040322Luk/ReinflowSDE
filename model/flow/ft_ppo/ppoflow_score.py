@@ -32,7 +32,7 @@ log = logging.getLogger(__name__)
 from collections import namedtuple
 from typing import Tuple
 from torch.distributions.normal import Normal
-from model.flow.mlp_flow import FlowMLP
+from model.flow.mlp_flow_score import FlowMLP
 Sample = namedtuple("Sample", "trajectories chains")
 
 class PPOFlow(nn.Module):
@@ -146,6 +146,74 @@ class PPOFlow(nn.Module):
     #                                 activation_type=self.explore_net_activation_type
     #                                 )
     
+    
+    def get_epsilon_at_time(self, t: float, training_progress: float = 0.0) -> float:
+        """
+        根据时间步 t 和训练进度计算 epsilon 值。
+
+        支持的调度类型:
+            - 'constant': 固定噪声系数 εt = ε₀
+            - 'linear_decay': 线性衰减 εt = ε₀ × (1 - t)
+            - 'cosine': 余弦衰减 εt = ε₀ × 0.5 × (1 + cos(πt))
+            - 'sqrt_decay': 平方根衰减 εt = ε₀ × √(1 - t)
+            - 'exponential_decay': 指数衰减 εt = ε₀ × exp(-λt)
+            - 'warmup_decay': 先增后减 εt = ε₀ × sin(πt)
+            - 'quadratic_decay': 二次衰减 εt = ε₀ × (1 - t)²
+            - 'inverse_sqrt': 反平方根 εt = ε₀ / √(1 + t)
+            - 'adaptive': 使用可学习的 epsilon
+            - 'training_decay': 随训练进度衰减
+
+        Args:
+            t: 当前时间步 (0 到 1)
+            training_progress: 训练进度 (0 到 1)，用于某些调度策略
+
+        Returns:
+            epsilon_t: 当前的噪声系数
+        """
+        import math
+        eps_0 = self.epsilon_t
+        eps_min = getattr(self, 'epsilon_min', 0.01)  # 默认值 0.001
+
+        if self.epsilon_schedule == 'constant':
+            return eps_0
+        elif self.epsilon_schedule == 'linear_decay':
+            # εt = ε₀ * (1 - t)
+            return max(eps_min, eps_0 * (1 - t))
+        elif self.epsilon_schedule == 'cosine':
+            # εt = ε₀ * 0.5 * (1 + cos(πt))
+            return max(eps_min, eps_0 * 0.5 * (1 + math.cos(math.pi * t)))
+        elif self.epsilon_schedule == 'sqrt_decay':
+            # εt = ε₀ * sqrt(1 - t)
+            return max(eps_min, eps_0 * math.sqrt(max(0, 1 - t)))
+        elif self.epsilon_schedule == 'exponential_decay':
+            # εt = ε₀ * exp(-λt)
+            decay_rate = getattr(self, 'epsilon_decay_rate', 2.0)  # 默认值 2.0
+            return max(eps_min, eps_0 * math.exp(-decay_rate * t))
+        elif self.epsilon_schedule == 'warmup_decay':
+            # εt = ε₀ * sin(πt) - 先增后减，t=0.5时最大
+            return max(eps_min, eps_0 * math.sin(math.pi * t))
+        elif self.epsilon_schedule == 'quadratic_decay':
+            # εt = ε₀ * (1 - t)² - 比线性更快衰减
+            return max(eps_min, eps_0 * (1 - t) ** 2)
+        elif self.epsilon_schedule == 'inverse_sqrt':
+            # εt = ε₀ / sqrt(1 + t) - 缓慢衰减
+            return max(eps_min, eps_0 / math.sqrt(1 + t))
+        elif self.epsilon_schedule == 'adaptive':
+            # 使用可学习的 epsilon
+            adaptive_eps = getattr(self, 'adaptive_epsilon', None)
+            if adaptive_eps is not None:
+                return max(eps_min, adaptive_eps.item())
+            else:
+                return eps_0  # fallback to constant
+        elif self.epsilon_schedule == 'training_decay':
+            # 随训练进度衰减: εt = ε₀ × (1 - 0.5×progress) × (1 - t)
+            decay_factor = 1 - 0.5 * training_progress
+            return max(eps_min, eps_0 * decay_factor * (1 - t))
+        else:
+            log.warning(f"Unknown epsilon_schedule: {self.epsilon_schedule}, using constant")
+            return eps_0
+
+    
     def check_gradient_flow(self):
         # print(f"{next(self.actor_ft.policy.parameters()).requires_grad}") #True
         # print(f"{next(self.actor_ft.mlp_logvar.parameters()).requires_grad}")#True
@@ -258,14 +326,15 @@ class PPOFlow(nn.Module):
             st = self.actor_ft.compute_score(xt, vt, t_batch)  # [B, horizon_steps, action_dim]
 
             # Compute epsilon at this timestep
-            if self.epsilon_schedule == 'constant':
-                eps_t = self.epsilon_t
-            elif self.epsilon_schedule == 'linear_decay':
-                eps_t = self.epsilon_t * (1 - t.item())
-            elif self.epsilon_schedule == 'cosine':
-                eps_t = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t.item()))
-            else:
-                eps_t = self.epsilon_t
+            # if self.epsilon_schedule == 'constant':
+            #     eps_t = self.epsilon_t
+            # elif self.epsilon_schedule == 'linear_decay':
+            #     eps_t = self.epsilon_t * (1 - t.item())
+            # elif self.epsilon_schedule == 'cosine':
+            #     eps_t = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t.item()))
+            # else:
+            #     eps_t = self.epsilon_t
+            eps_t = self.get_epsilon_at_time(t.item())
 
             # Transition mean: xt + [bt + εt·st]·dt
             drift = vt + eps_t * st
@@ -386,14 +455,15 @@ class PPOFlow(nn.Module):
             st = self.actor_ft.compute_score(xt, vt, t_batch)  # [B, Ta, Da]
 
             # 3. Compute epsilon at this timestep
-            if self.epsilon_schedule == 'constant':
-                eps_t = self.epsilon_t
-            elif self.epsilon_schedule == 'linear_decay':
-                eps_t = self.epsilon_t * (1 - t.item())
-            elif self.epsilon_schedule == 'cosine':
-                eps_t = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t.item()))
-            else:
-                eps_t = self.epsilon_t
+            # if self.epsilon_schedule == 'constant':
+            #     eps_t = self.epsilon_t
+            # elif self.epsilon_schedule == 'linear_decay':
+            #     eps_t = self.epsilon_t * (1 - t.item())
+            # elif self.epsilon_schedule == 'cosine':
+            #     eps_t = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t.item()))
+            # else:
+            #     eps_t = self.epsilon_t
+            eps_t = self.get_epsilon_at_time(t.item()) # TODO: 这里的随机性应该如何保证呢？ 采用调度器就相当于确定了吧
 
             # 4. Compute drift and diffusion
             # Drift: [bt + εt·st]·Δt

@@ -81,7 +81,7 @@ class TrainPPOFlowAgent(TrainPPOAgent):
         log.info(f"Score-based exploration: epsilon_t={self.epsilon_t}, schedule={self.epsilon_schedule}")
 
         # Plot epsilon schedule
-        epsilon_values = self._compute_epsilon_schedule()
+        # epsilon_values = self._compute_epsilon_schedule()
         # plt.figure()
         # plt.plot(np.arange(self.inference_steps), epsilon_values)
         # plt.xlabel('Inference Step')
@@ -94,21 +94,21 @@ class TrainPPOFlowAgent(TrainPPOAgent):
 
         self.initial_ratio_error_threshold = 1e-6
 
-    def _compute_epsilon_schedule(self):
-        """计算 epsilon schedule 用于可视化"""
-        epsilon_values = []
-        for i in range(self.inference_steps):
-            t = i / self.inference_steps
-            if self.epsilon_schedule == 'constant':
-                eps = self.epsilon_t
-            elif self.epsilon_schedule == 'linear_decay':
-                eps = self.epsilon_t * (1 - t)
-            elif self.epsilon_schedule == 'cosine':
-                eps = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t))
-            else:
-                eps = self.epsilon_t
-            epsilon_values.append(eps)
-        return epsilon_values
+    # def _compute_epsilon_schedule(self):
+    #     """计算 epsilon schedule 用于可视化"""
+    #     epsilon_values = []
+    #     for i in range(self.inference_steps):
+    #         t = i / self.inference_steps
+    #         if self.epsilon_schedule == 'constant':
+    #             eps = self.epsilon_t
+    #         elif self.epsilon_schedule == 'linear_decay':
+    #             eps = self.epsilon_t * (1 - t)
+    #         elif self.epsilon_schedule == 'cosine':
+    #             eps = self.epsilon_t * 0.5 * (1 + np.cos(np.pi * t))
+    #         else:
+    #             eps = self.epsilon_t
+    #         epsilon_values.append(eps)
+    #     return epsilon_values
 
     def init_buffer(self):
         self.buffer = PPOFlowBuffer(

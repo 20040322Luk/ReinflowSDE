@@ -28,14 +28,14 @@ device: cuda:0
 sim_device: cuda:0
 denoising_steps: 4
 # Score-based exploration parameters
-epsilon_t: 0.1
-epsilon_schedule: constant
+epsilon_t: 0.2
+epsilon_schedule: cosine  # Options: constant, linear_decay, cosine, sqrt_decay, exponential_decay, warmup_decay, quadratic_decay, inverse_sqrt, adaptive, training_decay, gaussian, gaussian_fixed_mean, uniform
 env:
+  save_video: false
   n_envs: 40
   name: ${env_name}
   max_episode_steps: 1000
   reset_at_iteration: false
-  save_video: false
   best_reward_threshold_for_success: 3
   wrappers:
     mujoco_locomotion_lowdim:
@@ -51,6 +51,9 @@ wandb:
   run: ${now:%Y-%m-%d}_${now:%H-%M-%S}_${name}
   offline_mode: false
 train:
+  save_video: false
+  n_render: 1
+  video_freq: 10
   n_train_itr: 1001
   n_critic_warmup_itr: 5
   n_steps: 500
@@ -72,7 +75,7 @@ train:
   save_model_freq: 300
   val_freq: 10
   render:
-    freq: 1
+    freq: 10
     num: 0
   reward_scale_running: true
   reward_scale_const: 1.0
@@ -117,7 +120,9 @@ model:
   inference_steps: ${denoising_steps}
   # Score-based exploration parameters
   epsilon_t: ${epsilon_t}
-  epsilon_schedule: ${epsilon_schedule}
+  # epsilon_schedule: ${epsilon_schedule}
+  # epsilon_variance: ${epsilon_variance}
+  # epsilon_max: ${epsilon_max}
   # epsilon_min: 0.001
   # epsilon_decay_rate: 2.0
   # score_clamp_value: 10.0

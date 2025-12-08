@@ -267,11 +267,15 @@ class TrainPPOAgent(TrainAgent):
     def prepare_video_path(self):
         # Prepare video paths for each envs --- only applies for the first set of episodes if allowing reset within iteration and each iteration has multiple episodes from one env
         self.options_venv = [{} for _ in range(self.n_envs)]
+        log.info(f"[Video Debug] itr={self.itr}, render_freq={self.render_freq}, render_video={self.render_video}, n_render={self.n_render}")
         if self.itr % self.render_freq == 0 and self.render_video:
             for env_ind in range(self.n_render):
-                self.options_venv[env_ind]["video_path"] = os.path.join(
-                    self.render_dir, f"itr-{self.itr}_trial-{env_ind}.mp4"
-                )
+                # self.options_venv[env_ind]["video_path"] = os.path.join(
+                #     self.render_dir, f"itr-{self.itr}_trial-{env_ind}.mp4"
+                # )
+                video_path = os.path.join(self.render_dir, f"itr-{self.itr}_trial-{env_ind}.mp4")
+                self.options_venv[env_ind]["video_path"] = video_path
+                log.info(f"[Video Debug] Will save video to: {video_path}")
 
     def set_model_mode(self):
         # Define train or eval - all envs restart
