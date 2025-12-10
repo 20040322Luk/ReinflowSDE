@@ -6,7 +6,7 @@ export MUJOCO_GL=osmesa
 export PYOPENGL_PLATFORM=osmesa
 
 # 2. 【关键】清除 DISPLAY 变量，防止代码尝试连接 X Server
-unset DISPLAY
+# unset DISPLAY
 
 # 3. 运行命令
 # 注意：必须添加 sim_device=cpu (或者 null)，对应文档建议
