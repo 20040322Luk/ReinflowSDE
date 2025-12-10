@@ -175,3 +175,6 @@ dmypy.json
 cfg/robomimic/*.sh
 
 *.out
+
+# 视频文件
+*.mp4
