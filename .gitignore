@@ -31,6 +31,7 @@ err/
 *.npz
 *.part
 *.hdf5
+*.hdf5.1
 *.pt
 *.pth
 # *.csv
