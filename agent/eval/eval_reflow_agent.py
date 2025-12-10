@@ -36,7 +36,7 @@ class EvalReFlowAgent(EvalAgent):
         ################################################      overload        #########################################################
         self.load_ema = cfg.get('load_ema', False) #Turn to True when evaluating pretrained models.
         self.clip_intermediate_actions=True
-        self.record_video =False
+        self.record_video =True
         self.record_env_index=0
         self.frame_width = 640  # Default, can be overridden
         self.frame_height = 480

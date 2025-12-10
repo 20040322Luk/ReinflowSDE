@@ -75,6 +75,7 @@ class PPOFlow(nn.Module):
                  logprob_debug_sample,
                  logprob_debug_recalculate,
                  epsilon_schedule='constant',   # epsilon schedule: 'constant', 'linear_decay', 'cosine'
+                 lamda = 10,
                  ):
         
         super().__init__()
@@ -124,6 +125,7 @@ class PPOFlow(nn.Module):
         for param in self.actor_ft.parameters():
             param.requires_grad = True
         self.actor_ft.to(self.device)
+        self.lamda = lamda
         logging.info("Cloned policy for fine-tuning (score-based, no noise network)")
 
         self.critic = critic
@@ -335,10 +337,10 @@ class PPOFlow(nn.Module):
             # else:
             #     eps_t = self.epsilon_t
             eps_t = self.get_epsilon_at_time(t.item())
-
+            
             # Transition mean: xt + [bt + εt·st]·dt
             drift = vt + eps_t * st
-            mean = xt + drift * dt
+            mean = xt + self.lamda * drift * dt
             if clip_intermediate_actions:
                 mean = mean.clamp(-self.denoised_clip_value, self.denoised_clip_value)
 
@@ -467,13 +469,34 @@ class PPOFlow(nn.Module):
 
             # 4. Compute drift and diffusion
             # Drift: [bt + εt·st]·Δt
-            drift = (vt + eps_t * st) * dt
+            # lamda = 0.125
+            # drift = (vt + lamda * eps_t * st) * dt
+            
+            # 更全面的统计信息
+            print("vt: mean={:.3f}, std={:.3f}, abs_mean={:.3f}".format(
+                vt.mean().item(), vt.std().item(), vt.abs().mean().item()))
+            print("st: mean={:.3f}, std={:.3f}, abs_mean={:.3f}".format(
+                st.mean().item(), st.std().item(), st.abs().mean().item()))
+            print("eps_t: {:.3f}".format(eps_t))
 
+            # 相对贡献比例
+            vt_norm = vt[0].norm().item()
+            st_norm = st[0].norm().item()
+            ratio_00 = (eps_t * st_norm) / (vt_norm + 1e-8)  # 避免除零
+            print("vt_norm: {:.3f}, st_norm: {:.3f}, st/vt ratio: {:.3f}".format(
+                vt_norm, st_norm, ratio_00))
+
+            # 更新量统计
+            drift = vt + eps_t * st
+            print("drift_norm: {:.3f}, vt_contrib: {:.3f}, st_contrib: {:.3f}".format(
+            drift.norm().item(),
+            vt_norm / (drift[0].norm().item() + 1e-8),
+            (eps_t * st_norm) / (drift[0].norm().item() + 1e-8)))
+            print("----------------------------------------")
             # Diffusion std: √(2εt·Δt)
             diffusion_std = np.sqrt(2 * eps_t * dt)
-
             # 5. Update: ak+1 = ak + drift + diffusion * noise
-            xt_mean = xt + drift
+            xt_mean = xt + self.lamda * drift * dt
             if clip_intermediate_actions:
                 xt_mean = xt_mean.clamp(-self.denoised_clip_value, self.denoised_clip_value)
 
